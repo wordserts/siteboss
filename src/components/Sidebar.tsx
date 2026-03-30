@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import {
-  LayoutDashboard, Calendar, Clock, BookOpen, Building2,
-  Users, Settings, BarChart2, LogOut, HardHat
+  LayoutDashboard, Calendar, Clock, BookOpen,
+  Building2, Users, Settings, BarChart2, LogOut, HardHat
 } from 'lucide-react'
 
 const navItems = [
@@ -38,8 +38,6 @@ export default function Sidebar({ userEmail }: { userEmail?: string }) {
 
   return (
     <aside className="w-52 flex-shrink-0 bg-white border-r border-stone-200 flex flex-col h-screen sticky top-0">
-
-      {/* Logo */}
       <div className="px-4 py-4 border-b border-stone-200">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 bg-orange-600 rounded-md flex items-center justify-center flex-shrink-0">
@@ -52,7 +50,6 @@ export default function Sidebar({ userEmail }: { userEmail?: string }) {
         </div>
       </div>
 
-      {/* Nav */}
       <nav className="flex-1 px-2 py-3 overflow-y-auto">
         {navItems.map((item, i) => {
           if (item.type === 'section') {
@@ -62,10 +59,8 @@ export default function Sidebar({ userEmail }: { userEmail?: string }) {
               </div>
             )
           }
-
           const Icon = item.icon!
           const isActive = pathname === item.href
-
           return (
             <Link
               key={item.href}
@@ -88,7 +83,6 @@ export default function Sidebar({ userEmail }: { userEmail?: string }) {
         })}
       </nav>
 
-      {/* User */}
       <div className="px-3 py-3 border-t border-stone-200">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-xs font-medium text-blue-700 flex-shrink-0">

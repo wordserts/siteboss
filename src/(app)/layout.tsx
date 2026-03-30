@@ -1,25 +1,19 @@
-import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
-import Sidebar from '@/components/Sidebar'
+import type { Metadata } from 'next'
+import './globals.css'
 
-export default async function AppLayout({
+export const metadata: Metadata = {
+  title: 'SiteBoss',
+  description: 'Field management for Nexus Civil',
+}
+
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (!user) {
-    redirect('/login')
-  }
-
   return (
-    <div className="flex h-screen bg-stone-100 overflow-hidden">
-      <Sidebar userEmail={user.email} />
-      <main className="flex-1 overflow-y-auto">
-        {children}
-      </main>
-    </div>
+    <html lang="en">
+      <body className="antialiased">{children}</body>
+    </html>
   )
 }
